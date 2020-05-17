@@ -16,15 +16,16 @@ class _OnboardingPageIndicatorPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
+    var paint = Paint()
       ..color = color
       ..style = PaintingStyle.stroke
       ..strokeWidth = 4.0;
 
     canvas.drawArc(
       Rect.fromCircle(
-          center: Offset(size.width / 2, size.height / 2),
-          radius: (size.shortestSide + 12.0) / 2),
+        center: Offset(size.width / 2, size.height / 2),
+        radius: (size.shortestSide + 12.0) / 2,
+      ),
       startAngle,
       indicatorLength,
       false,
@@ -50,7 +51,7 @@ class OnboardingPageIndicator extends StatelessWidget {
     return currentPage > pageIndex ? kWhite : kWhite.withOpacity(0.25);
   }
 
-  double get indicatorGap => pi / 2;
+  double get indicatorGap => pi / 12;
   double get indicatorLength => pi / 3;
 
   @override
@@ -64,12 +65,19 @@ class OnboardingPageIndicator extends StatelessWidget {
         ),
         child: CustomPaint(
           painter: _OnboardingPageIndicatorPainter(
-            color: _getPageIndicatorColor(2),
-            startAngle:
-                (4 * indicatorLength) + (indicatorLength + indicatorGap),
+            color: _getPageIndicatorColor(1),
+            startAngle: 4 * indicatorLength,
             indicatorLength: indicatorLength,
           ),
-          child: child,
+          child: CustomPaint(
+            painter: _OnboardingPageIndicatorPainter(
+              color: _getPageIndicatorColor(2),
+              startAngle:
+                  (4 * indicatorLength) + (indicatorLength + indicatorGap),
+              indicatorLength: indicatorLength,
+            ),
+            child: child,
+          ),
         ),
       ),
     );

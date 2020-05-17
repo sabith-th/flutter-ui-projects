@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:onboarding_concept/constants.dart';
-import 'package:onboarding_concept/screens/onboarding/pages/community/index.dart';
-import 'package:onboarding_concept/screens/onboarding/pages/education/index.dart';
-import 'package:onboarding_concept/screens/onboarding/pages/work/index.dart';
-import 'package:onboarding_concept/screens/onboarding/widgets/current_page_indicator.dart';
-import 'package:onboarding_concept/screens/onboarding/widgets/header.dart';
-import 'package:onboarding_concept/screens/onboarding/widgets/next_page_button.dart';
-import 'package:onboarding_concept/screens/onboarding/widgets/onboarding_page.dart';
+import 'package:onboarding_concept/screens/login/login.dart';
+
+import 'pages/community/index.dart';
+import 'pages/education/index.dart';
+import 'pages/work/index.dart';
+import 'widgets/header.dart';
+import 'widgets/next_page_button.dart';
+import 'widgets/onboarding_page.dart';
+import 'widgets/onboarding_page_indicator.dart';
 
 class Onboarding extends StatefulWidget {
   @override
@@ -53,10 +55,9 @@ class _OnboardingState extends State<Onboarding> {
   }
 
   void _goToLogin() {
-    // TODO: Replace with Login
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => Container(),
+        builder: (_) => Login(),
       ),
     );
   }
