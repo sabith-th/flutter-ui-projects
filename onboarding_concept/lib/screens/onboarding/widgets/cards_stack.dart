@@ -5,10 +5,17 @@ class CardsStack extends StatelessWidget {
   final int pageNumber;
   final Widget lightCardChild;
   final Widget darkCardChild;
+  final Animation<Offset> lightCardOffsetAnimation;
+  final Animation<Offset> darkCardOffsetAnimation;
 
-  const CardsStack(
-      {Key key, this.pageNumber, this.lightCardChild, this.darkCardChild})
-      : super(key: key);
+  const CardsStack({
+    Key key,
+    this.pageNumber,
+    this.lightCardChild,
+    this.darkCardChild,
+    this.lightCardOffsetAnimation,
+    this.darkCardOffsetAnimation,
+  }) : super(key: key);
 
   bool get isOddPageNumber => pageNumber % 2 == 1;
 
@@ -25,37 +32,43 @@ class CardsStack extends StatelessWidget {
         alignment: AlignmentDirectional.center,
         overflow: Overflow.visible,
         children: [
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            color: kDarkBlue,
-            child: Container(
-              width: darkCardWidth,
-              height: darkCardHeight,
-              padding: EdgeInsets.only(
-                top: !isOddPageNumber ? 100.0 : 0.0,
-                bottom: isOddPageNumber ? 100.0 : 0.0,
+          SlideTransition(
+            position: darkCardOffsetAnimation,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16.0),
               ),
-              child: Center(
-                child: darkCardChild,
+              color: kDarkBlue,
+              child: Container(
+                width: darkCardWidth,
+                height: darkCardHeight,
+                padding: EdgeInsets.only(
+                  top: !isOddPageNumber ? 100.0 : 0.0,
+                  bottom: isOddPageNumber ? 100.0 : 0.0,
+                ),
+                child: Center(
+                  child: darkCardChild,
+                ),
               ),
             ),
           ),
           Positioned(
             top: !isOddPageNumber ? -25.0 : null,
             bottom: isOddPageNumber ? -25.0 : null,
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
-              ),
-              color: kLightBlue,
-              child: Container(
-                width: darkCardWidth * 0.8,
-                height: darkCardHeight * 0.5,
-                padding: EdgeInsets.symmetric(horizontal: kPaddingM),
-                child: Center(
-                  child: lightCardChild,
+            child: SlideTransition(
+              position: lightCardOffsetAnimation,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                color: kLightBlue,
+                child: Container(
+                  width: darkCardWidth * 0.8,
+                  height: darkCardHeight * 0.5,
+                  padding: EdgeInsets.symmetric(horizontal: kPaddingM),
+                  child: Center(
+                    child: lightCardChild,
+                  ),
                 ),
               ),
             ),
