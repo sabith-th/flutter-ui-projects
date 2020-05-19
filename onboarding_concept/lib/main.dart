@@ -14,7 +14,9 @@ class MyApp extends StatelessWidget {
       home: Builder(
         builder: (BuildContext context) {
           final screenHeight = MediaQuery.of(context).size.height;
-          return Onboarding();
+          return Onboarding(
+            screenHeight: screenHeight,
+          );
         },
       ),
       debugShowCheckedModeBanner: false,

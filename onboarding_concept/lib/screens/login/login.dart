@@ -6,6 +6,10 @@ import 'widgets/header.dart';
 import 'widgets/login_form.dart';
 
 class Login extends StatefulWidget {
+  final double screenHeight;
+
+  const Login({Key key, this.screenHeight}) : super(key: key);
+
   @override
   _LoginState createState() => _LoginState();
 }
