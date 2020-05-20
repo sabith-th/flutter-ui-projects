@@ -3,8 +3,13 @@ import 'package:onboarding_concept/constants.dart';
 
 import 'custom_button.dart';
 import 'custom_input_field.dart';
+import 'fade_slide_transition.dart';
 
 class LoginForm extends StatelessWidget {
+  final Animation<double> animation;
+
+  const LoginForm({Key key, this.animation}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final height =
@@ -15,41 +20,61 @@ class LoginForm extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: kPaddingL),
       child: Column(
         children: [
-          CustomInputField(
-            label: 'Username or Email',
-            prefixIcon: Icons.person,
-            obscureText: false,
+          FadeSlideTransition(
+            animation: animation,
+            additionalOffset: 0.0,
+            child: CustomInputField(
+              label: 'Username or Email',
+              prefixIcon: Icons.person,
+              obscureText: false,
+            ),
           ),
           SizedBox(height: space),
-          CustomInputField(
-            label: 'Password',
-            prefixIcon: Icons.lock,
-            obscureText: true,
+          FadeSlideTransition(
+            animation: animation,
+            additionalOffset: space,
+            child: CustomInputField(
+              label: 'Password',
+              prefixIcon: Icons.lock,
+              obscureText: true,
+            ),
           ),
           SizedBox(height: space),
-          CustomButton(
-            color: kBlue,
-            textColor: kWhite,
-            text: 'Login to continue',
-            onPressed: () {},
+          FadeSlideTransition(
+            animation: animation,
+            additionalOffset: 2 * space,
+            child: CustomButton(
+              color: kBlue,
+              textColor: kWhite,
+              text: 'Login to continue',
+              onPressed: () {},
+            ),
           ),
           SizedBox(height: 2 * space),
-          CustomButton(
-            color: kWhite,
-            textColor: kBlack.withOpacity(0.5),
-            text: 'Continue with Google',
-            image: Image(
-              image: AssetImage(kGoogleLogoPath),
-              height: 48.0,
+          FadeSlideTransition(
+            animation: animation,
+            additionalOffset: 3 * space,
+            child: CustomButton(
+              color: kWhite,
+              textColor: kBlack.withOpacity(0.5),
+              text: 'Continue with Google',
+              image: Image(
+                image: AssetImage(kGoogleLogoPath),
+                height: 48.0,
+              ),
+              onPressed: () {},
             ),
-            onPressed: () {},
           ),
           SizedBox(height: space),
-          CustomButton(
-            color: kBlack,
-            textColor: kWhite,
-            text: 'Create a Bubble Account',
-            onPressed: () {},
+          FadeSlideTransition(
+            animation: animation,
+            additionalOffset: 4 * space,
+            child: CustomButton(
+              color: kBlack,
+              textColor: kWhite,
+              text: 'Create a Bubble Account',
+              onPressed: () {},
+            ),
           ),
         ],
       ),
